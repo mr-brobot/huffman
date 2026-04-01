@@ -6,6 +6,9 @@ namespace Huffman
 /-- A forest is a list of trees. -/
 abbrev Forest (α : Type) := List (Tree α)
 
+/-- A forest is sorted when each tree's weight is ≤ all subsequent trees' weights. -/
+abbrev Forest.Sorted (f : Forest α) : Prop := f.Pairwise (· ≤ ·)
+
 /-- Build a sorted forest of leaf nodes from a frequency list. -/
 def mkForest (freqs : List (α × Nat)) : Forest α :=
   freqs.foldl (fun acc (s, w) => acc.orderedInsert (· ≤ ·) (.leaf w s)) []
