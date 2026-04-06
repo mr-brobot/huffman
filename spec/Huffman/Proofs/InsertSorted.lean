@@ -6,7 +6,7 @@ namespace Huffman
 /-- mkForest produces a sorted forest. -/
 theorem mkForest_sorted (freqs : List (α × Nat)) :
     Forest.Sorted (mkForest freqs) := by
-  simp [mkForest]
+  simp only [mkForest]
   suffices ∀ acc, Forest.Sorted acc →
     Forest.Sorted
       (freqs.foldl (fun acc (p : α × Nat) =>
